@@ -1,0 +1,101 @@
+package principal;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
+
+import clases.Habitacion;
+import clases.Hotel;
+import clases.Huesped;
+import clases.Reservacion;
+
+public class PrincipalInsertar {
+
+	public static void main(String[] args) {
+		EntityManagerFactory emf= Persistence.createEntityManagerFactory("TestPersistence");	
+		EntityManager em = emf.createEntityManager();
+		//debajo aqui
+		 // Crear un objeto Hotel con los datos a insertar
+        Hotel hotel = new Hotel();
+        hotel.setCodigoHotel(5);
+        hotel.setNombre("ParaEso");
+        hotel.setDireccion("Calle Principal, Ciudad");
+        hotel.setSitioWeb("www.IGME.com");
+        
+        // Crear un objeto Habitacion con los datos a insertar
+        Habitacion habitacion = new Habitacion();
+        habitacion.setCodigoHabitacion(4);
+        habitacion.setCodigoHotel(2);
+        habitacion.setTipo("Doble");
+        habitacion.setPrecio(100.0);
+        
+     // Crear un objeto Huesped con los datos a insertar
+        Huesped huesped = new Huesped();
+        huesped.setCodigoHuesped(4);
+        huesped.setNombre("Imgme Marcial");
+        huesped.setEmail("igmemarcial@gmail.com");
+        huesped.setDireccion("Calle Principal, Ciudad");
+        huesped.setTelefono("1234567890");
+        
+     // Crear un objeto Reservacion con los datos a insertar
+        Reservacion reservacion = new Reservacion();
+        reservacion.setCodigoReserva(4);
+        reservacion.setCodigoHotel(1);
+        reservacion.setCodigoHuesped(1);
+        reservacion.setCodigoHabitacion(1);
+     // Asignar las fechas predeterminadas
+        java.util.Date fechaInicio = new java.util.Date();
+        java.util.Date fechaFin = new java.util.Date();
+        reservacion.setFechaInicio(fechaInicio);
+        reservacion.setFechaFin(fechaFin);
+        
+        // Iniciar la transacción
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+
+        // Insertar el objeto Hotel en la base de datos
+        em.persist(hotel);
+        // Insertar el objeto Habitacion en la base de datos
+        em.persist(habitacion);
+     // Insertar el objeto Huesped en la base de datos
+        em.persist(huesped);
+        // Insertar el objeto Reservacion en la base de datos
+        em.persist(reservacion);
+
+        // Confirmar la transacción
+        tx.commit();
+
+        System.out.println("Datos del Hotel insertado:");
+        System.out.println("Código de Hotel: " + hotel.getCodigoHotel());
+        System.out.println("Nombre: " + hotel.getNombre());
+        System.out.println("Dirección: " + hotel.getDireccion());
+        System.out.println("Sitio Web: " + hotel.getSitioWeb());
+        
+        System.out.println("\nDatos de la Habitación insertada:");
+        System.out.println("Código de Habitación: " + habitacion.getCodigoHabitacion());
+        System.out.println("Código de Hotel: " + habitacion.getCodigoHotel());
+        System.out.println("Tipo: " + habitacion.getTipo());
+        System.out.println("Precio: " + habitacion.getPrecio());
+        
+        System.out.println("Datos del Huesped insertado:");
+        System.out.println("Código de Huesped: " + huesped.getCodigoHuesped());
+        System.out.println("Nombre: " + huesped.getNombre());
+        System.out.println("Email: " + huesped.getEmail());
+        System.out.println("Dirección: " + huesped.getDireccion());
+        System.out.println("Teléfono: " + huesped.getTelefono());
+        
+        System.out.println("Datos de la Reservacion insertada:");
+        System.out.println("Código de Reserva: " + reservacion.getCodigoReserva());
+        System.out.println("Código de Hotel: " + reservacion.getCodigoHotel());
+        System.out.println("Código de Huesped: " + reservacion.getCodigoHuesped());
+        System.out.println("Código de Habitacion: " + reservacion.getCodigoHabitacion());
+        System.out.println("Fecha de Inicio: " + reservacion.getFechaInicio());
+        System.out.println("Fecha de Fin: " + reservacion.getFechaFin());
+
+        em.close();
+        emf.close();
+        //repositorio en version 2.2
+	}
+
+}

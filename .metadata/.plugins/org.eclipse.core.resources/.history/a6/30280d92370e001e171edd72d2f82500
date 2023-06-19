@@ -1,0 +1,52 @@
+package clases;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+@Entity
+public class Habitacion {
+	@Id
+	  private int codigoHabitacion;
+	    private int codigoHotel;
+	    private String tipo;
+	    private double precio;
+
+	    // Constructor
+	    public Habitacion(int codigoHabitacion, int codigoHotel, String tipo, double precio) {
+	        this.codigoHabitacion = codigoHabitacion;
+	        this.codigoHotel = codigoHotel;
+	        this.tipo = tipo;
+	        this.precio = precio;
+	    }
+
+	    // Getters y Setters
+	    public int getCodigoHabitacion() {
+	        return codigoHabitacion;
+	    }
+
+	    public void setCodigoHabitacion(int codigoHabitacion) {
+	        this.codigoHabitacion = codigoHabitacion;
+	    }
+
+	    public int getCodigoHotel() {
+	        return codigoHotel;
+	    }
+
+	    public void setCodigoHotel(int codigoHotel) {
+	        this.codigoHotel = codigoHotel;
+	    }
+
+	    public String getTipo() {
+	        return tipo;
+	    }
+
+	    public void setTipo(String tipo) {
+	        this.tipo = tipo;
+	    }
+
+	    public double getPrecio() {
+	        return precio;
+	    }
+
+	    public void setPrecio(double precio) {
+	        this.precio = precio;
+	    }
+}
